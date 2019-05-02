@@ -1,22 +1,44 @@
-PShape thor;
-PShape giant;
-void setup() {
-  fullScreen(P3D); 
-  background(0);
-  thor = loadShape("thor.obj");
-  giant =loadShape("giant.obj");
-  giant.setFill(color(#FF4141));
-  thor.setFill(color(255));
-  thor.scale(2);
-  giant.scale(5);
-  giant.rotateX(135);
-  giant.rotateY(radians(90));
-  thor.rotateX(135);
-  thor.rotateY(radians(270));
+
+float movementX;
+float movementY;
+PImage backgroundFill;
+PImage mutantTexture;
+class Thor
+{
+  PShape shape;
+  //constructor
+  Thor(PVector position)
+  {
+     
+  }
+   
 }
-void draw() {
-  background(0);
+
+Thor player;
+PShape mutant;
+void setup()
+{
+  player = new Thor(new PVector(movementX, width * 0.4f));
+  fullScreen(P2D);
+  mutant = loadShape("Mutant.obj");
+  mutantTexture = loadImage("MutantTexture.jpg");
+  mutant.setTexture(mutantTexture);
+  mutant.scale(40);
+  //mutant.rotateX(radians(180));
+  mutant.rotateZ(radians(180));
+  
+  //mutant.rotateY(radians(90));
+ // mutant.rotateX(radians(90));
+  backgroundFill = loadImage("VolcanicBackground.jpg");
+  backgroundFill.resize(width, height);
+  
+}
+
+void draw()
+{
+  
+  background(backgroundFill); 
+  shape(mutant, width/2, height/2);
   lights();
-  shape(giant,width/2+300,height/2+200);
-  shape(thor, mouseX, mouseY + 100);
+  
 }
